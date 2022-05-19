@@ -1,0 +1,40 @@
+<!-- app.component.html -->
+
+<div class="container">
+  <div class="forminput">
+    <form [formGroup]="angForm" class="myform" novalidate>
+      <div class="form-group">
+        <div class="required-field">Name</div>
+        <span>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="name"
+            required
+        /></span>
+
+        <div
+          *ngIf="
+            angForm.controls['name'].invalid &&
+            (angForm.controls['name'].dirty || angForm.controls['name'].touched)
+          "
+          class="invalid-feedback"
+        >
+          <div
+            class="error"
+            *ngIf="angForm.controls['name'].errors?.['required']"
+          >
+            *Name is required.
+          </div>
+          <div
+            class="error"
+            *ngIf="angForm.controls['name'].errors?.['pattern']"
+          >
+            *Please enter lowercase letters
+          </div>
+        </div>
+      </div>
+    </form>
+    <br />
+  </div>
+</div>
